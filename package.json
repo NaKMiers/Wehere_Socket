@@ -8,5 +8,11 @@
    },
    "keywords": [],
    "author": "",
-   "license": "ISC"
+   "license": "ISC",
+   "devDependencies": {
+      "nodemon": "^2.0.15"
+   },
+   "dependencies": {
+      "socket.io": "^4.4.1"
+   }
 }
