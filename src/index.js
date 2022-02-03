@@ -1,6 +1,8 @@
-const io = require('socket.io')(3002, {
+require('dotenv').config()
+
+const io = require('socket.io')(process.env.PORT, {
    cors: {
-      origin: 'http://localhost:3000',
+      origin: process.env.API_CLIENT,
    },
 })
 
@@ -22,15 +24,12 @@ io.on('connection', socket => {
 
    // take user and socketId from client
    socket.on('addUser', userId => {
-      console.log('addUser')
       addUser(userId, socket.id)
    })
 
    // send and get messages
    socket.on('sendMessage', ({ senderId, receiverId, text }) => {
-      console.log('users: ', users)
       const receiver = getUser(receiverId)
-      console.log('receiver:', receiver)
       io.to(receiver.socketId).emit('getMessage', { senderId, text })
    })
 
